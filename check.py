@@ -22,7 +22,7 @@ for i in range(tests):
         file.write(str(random.randint(-2000000000, 2000000000))+" ")
     file.write("\n")
     file.close()
-    #subprocess.run([sort_name + '.exe', '-o', sort_name + '.o'])
+    subprocess.run([sort_name + '.exe', '-o', sort_name + '.o'])
     file = open("output.txt", 'r')
     start_values  = list(map(int, file.readline().split()))
     result_values = list(map(int, file.readline().split()))
