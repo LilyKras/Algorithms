@@ -2,14 +2,10 @@
 #include <ctime>
 #include <algorithm>
 #include <random>
+#include <fstream>
 using namespace std;
 
-void sort(int* A, int n){
-    sort(A, A+n);
-    
-}
-
-void qsort(int* A, int L, int R) {
+void quick_sort(int* A, int L, int R) {
   if (R - L <= 1) {
     return;
   }
@@ -25,45 +21,41 @@ void qsort(int* A, int L, int R) {
       y++;
     }
   }
-  qsort(A, L, x);
-  qsort(A, y, R);
+  quick_sort(A, L, x);
+  quick_sort(A, y, R);
 }
 
 int main(){
     int n;
     int tmp;
-    cin>>n;
+    ifstream fin;
+    fin.open("input.txt");
+    fin >> n;
     int a[n];
-    int a1[n];
-    for(int q = 0; q < 100; q++){
-			for(int i = 0; i < n; i++){
-					tmp = rand()%1000;
-					a[i] = tmp;
-					a1[i] = tmp;
-			}
+    for (int i = 0; i < n; i++) {
+        fin >> a[i];
+    }
+    fin.close();
 
+    ofstream fout;
+    fout.open("output.txt");
 
-			unsigned int start_time =  clock();
-			qsort(a, 0, n); 
-			unsigned int end_time = clock(); 
-			unsigned int search_time = end_time - start_time;
-      cout << search_time << " ms" << endl;
-      sort(a1, n);
-      bool flag = true;
-      for(int i = 0; i < n; i++){
-              if(a[i]!=a1[i]){
-                     flag = false;
-              }
-      }
-      
-      if(flag){
-          cout << "OK" << endl;
-      }
-      
-    	else{
-        cout << "NO" << endl;
-    	}
-   	}
+    for (int i = 0; i < n; i++) {
+        fout << a[i] << " ";
+    }
+    fout << endl;
+
+    unsigned int start_time =  clock();
+    quick_sort(a, 0, n);
+    unsigned int end_time = clock();
+    unsigned int search_time = end_time - start_time;
+
+    for (int i = 0; i < n; i++) {
+        fout << a[i] << " ";
+    }
+    fout << endl;
+    fout << search_time << endl;
+
     return 0;
 
 }
