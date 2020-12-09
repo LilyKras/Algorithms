@@ -2,12 +2,10 @@
 #include <ctime>
 #include <algorithm>
 #include <random>
-using namespace std;
+#include <fstream>
+#include <time.h>
 
-void sort(int* arr, int n){
-    sort(arr, arr+n);
-    
-}
+using namespace std;
 
 void up(int *a, int s, int m)
 {
@@ -32,12 +30,12 @@ void up(int *a, int s, int m)
 void heap_sort(int *a, int n)
 {
     int tmp = n/2 - 1;
-    
+
     for(int i = n/2 - 1; i >= 0; i--)
     {
         up(a, i, n);
     }
-    
+
     for(int i = n - 1; i >= 0; i--)
     {
         swap(a[0], a[i]);
@@ -48,38 +46,34 @@ void heap_sort(int *a, int n)
 int main(){
     int n;
     int tmp;
-    cin>>n;
+    ifstream fin;
+    fin.open("input.txt");
+    fin >> n;
     int a[n];
-    int a1[n];
-    for(int q = 0; q < 100; q++){
-    for(int i = 0; i < n; i++){
-        tmp = rand()%1000;
-        a[i] = tmp;
-        a1[i] = tmp;
+    for (int i = 0; i < n; i++) {
+        fin >> a[i];
     }
+    fin.close();
 
+    ofstream fout;
+    fout.open("output.txt");
+
+    for (int i = 0; i < n; i++) {
+        fout << a[i] << " ";
+    }
+    fout << endl;
 
     unsigned int start_time =  clock();
-    heap_sort(a, n); 
-    unsigned int end_time = clock(); 
+    heap_sort(a, n);
+    unsigned int end_time = clock();
     unsigned int search_time = end_time - start_time;
-    cout << search_time << " ms" << endl;
-    sort(a1, n);
-    bool flag = true;
-    for(int i = 0; i < n; i++){
-       if(a[i]!=a1[i]){
-           flag = false;
-       }
+
+    for (int i = 0; i < n; i++) {
+        fout << a[i] << " ";
     }
-      
-    if(flag){
-       cout << "OK" << endl;
-    }
-      
-    else{
-       cout << "NO" << endl;
-    }
-    }
+    fout << endl;
+    fout << search_time << endl;
+
     return 0;
 
 }
