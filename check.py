@@ -13,9 +13,9 @@ elif(ans==3):
 count=0
 time_arr = []
 tests=100
+n = random.randint(1, 20000)
 
 for i in range(tests):
-    n = random.randint(1, 2000)
     file = open("input.txt", 'w')
     file.write(str(n)+"\n")
     for j in range(n):
