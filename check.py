@@ -1,7 +1,7 @@
 import random
 import subprocess
 
-print("1 shellsort\n2 quicksort\n3 heapsort\n")
+print("1 shellsort\n2 quicksort\n3 heapsort\n4 introsort")
 ans = int(input())
 sort_name=""
 if (ans==1):
@@ -10,6 +10,8 @@ elif(ans==2):
     sort_name="qsort"
 elif(ans==3):
     sort_name="heap_sort"
+elif(ans==4):
+    sort_name="intro_sort"
 count=0
 time_arr = []
 tests=100
