@@ -1,5 +1,8 @@
 import random
 import subprocess
+#import numpy as np
+#import pandas as pd
+#import matplotlib.pyplot as plt
 
 print("1 shellsort\n2 quicksort\n3 heapsort\n4 introsort")
 ans = int(input())
@@ -14,10 +17,12 @@ elif(ans==4):
     sort_name="intro_sort"
 count=0
 time_arr = []
-tests=100
-n = 100
+counte_arr = []
+tests = 100
+n = 1000
 
 for i in range(tests):
+    counte_arr.append(n)
     file = open("input.txt", 'w')
     file.write(str(n)+"\n")
     for j in range(n):
@@ -35,7 +40,9 @@ for i in range(tests):
     if(sort_arr == result_values):
         count +=1
         time_arr.append(time)
-    n*=10
+    n += 1000
         
 print("Correct:", count, "/", tests,"\n")
-print(*time_arr)
+#plt.plot(counte_arr, time_arr)
+#plt.legend("Зависимость времени в мс от колва элементов")
+#plt.show()
