@@ -15,7 +15,7 @@ elif(ans==4):
 count=0
 time_arr = []
 tests=100
-n = random.randint(1, 20000)
+n = 100
 
 for i in range(tests):
     file = open("input.txt", 'w')
@@ -35,6 +35,7 @@ for i in range(tests):
     if(sort_arr == result_values):
         count +=1
         time_arr.append(time)
+    n*=10
         
 print("Correct:", count, "/", tests,"\n")
 print(*time_arr)
