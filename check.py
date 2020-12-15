@@ -10,7 +10,7 @@ sort_name=""
 if (ans==1):
     sort_name="shell_sort"
 elif(ans==2):
-    sort_name="qsort"
+    sort_name="q_sort"
 elif(ans==3):
     sort_name="heap_sort"
 elif(ans==4):
