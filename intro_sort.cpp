@@ -28,19 +28,19 @@ void up(int *a, int s, int m)
     }
 }
 
-void heap_sort(int *a, int n, int left)
+void heap_sort(int *a, int n)
 {
     int tmp = n/2 - 1;
 
-    for(int i = n/2 - 1 + left; i >= left; i--)
+    for(int i = n/2 - 1; i >= 0; i--)
     {
         up(a, i, n);
     }
 
-    for(int i = n - 1 + left; i >= left; i--)
+    for(int i = n - 1; i >= 0; i--)
     {
         swap(a[0], a[i]);
-        up(a, left, i);
+        up(a, 0, i);
     }
 }
 
@@ -64,8 +64,7 @@ void quick_sort(int *a, int left, int right, int count)
         if (l<right) quick_sort(a, l, right, count-1);
     }
     else{
-        if (left<r) heap_sort(a, r - left + 1, left);
-        if (l<right) heap_sort(a, right - l +1, l);
+        heap_sort((a+left), right - left + 1);
     }
 }
 
@@ -104,3 +103,4 @@ int main(){
     return 0;
 
 }
+
