@@ -28,46 +28,45 @@ void up(int *a, int s, int m)
     }
 }
 
-void heap_sort(int *a, int s, int e)
+void heap_sort(int *a, int n, int left)
 {
-    int tmp = (s-e+1)/2 - 1;
+    int tmp = n/2 - 1;
 
-    for(int i = (s-e+1)/2 - 1; i >= s; i--)
+    for(int i = n/2 - 1 + left; i >= left; i--)
     {
-        up(a, i+s, (s-e+1));
+        up(a, i, n);
     }
 
-    for(int i = (s-e+1) - 1; i >= s; i--)
+    for(int i = n - 1 + left; i >= left; i--)
     {
-        swap(a[s], a[i]);
-        up(a, s, i);
+        swap(a[0], a[i]);
+        up(a, left, i);
     }
 }
 
-void quick_sort(int* A, int L, int R, int count) {
-  if(count != 0){
-      cout << count << " ";
-      if (R - L <= 1) {
-        return;
-      }
-      int mid = A[L + rand() % (R - L)];
-      int x = L, y = L;
-      for (int i = L; i < R; i++) {
-        if (A[i] < mid) {
-          swap(A[i], A[x]);
-          if (x != y) swap(A[i], A[y]);
-          x++, y++;
-        } else if (A[i] == mid) {
-          swap(A[y], A[i]);
-          y++;
-        }
-      }
-      quick_sort(A, L, x, count-1);
-      quick_sort(A, y, R, count-1);
-  }
-  else{
-      heap_sort(A, L, R);
-  }
+void quick_sort(int *a, int left, int right, int count)
+{
+    if(count != 0){
+        int r = right, l = left;
+        int elem = a[ l + rand() % (r - l + 1)];;
+        do
+        {
+            while (a[l]<elem) l++;
+            while (a[r]>elem) r--;
+            if (l <= r) 
+            {
+                swap(a[l], a[r]);
+                l++;
+                r--;
+            }
+        } while (l<r);
+        if (left<r) quick_sort(a, left, r, count-1);
+        if (l<right) quick_sort(a, l, right, count-1);
+    }
+    else{
+        if (left<r) heap_sort(a, r - left + 1, left);
+        if (l<right) heap_sort(a, right - l +1, l);
+    }
 }
 
 int main(){
